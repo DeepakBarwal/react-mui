@@ -1,5 +1,6 @@
 import { Mail, Notifications, Pets } from "@mui/icons-material";
-import { AppBar, styled, Toolbar, Typography, Box, InputBase, Badge, Avatar } from "@mui/material";
+import { AppBar, styled, Toolbar, Typography, Box, InputBase, Badge, Avatar, Menu, MenuItem } from "@mui/material";
+import { useState } from "react";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -32,6 +33,8 @@ const UserBox = styled(Box)(({theme}) => ({
 }));
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <AppBar position="sticky">
       <StyledToolbar>
@@ -45,13 +48,36 @@ const Navbar = () => {
           <Badge badgeContent={4} color="error">
             <Notifications />
           </Badge>
-          <Avatar sx={{ width: 30, height: 30 }} src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+          <Avatar 
+            sx={{ width: 30, height: 30 }} 
+            src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+            onClick={e => setOpen(true)}
+          />
         </Icons>
-        <UserBox>
+        <UserBox onClick={e => setOpen(true)}>
           <Avatar sx={{ width: 30, height: 30 }} src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
           <Typography variant="span">John</Typography>
         </UserBox>
       </StyledToolbar>
+
+      <Menu
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
+        open={open}
+        onClose={e => setOpen(false)}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>My account</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Menu>
     </AppBar>
   )
 }
