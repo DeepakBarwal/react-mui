@@ -1,7 +1,8 @@
+import { Box } from "@mui/material";
 
 const Sidebar = () => {
   return (
-    <div>Sidebar</div>
+    <Box bgcolor="skyblue" flex={1} p={2}>Sidebar</Box>
   )
 }
 
